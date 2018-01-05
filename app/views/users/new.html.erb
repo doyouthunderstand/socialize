@@ -1,0 +1,43 @@
+<div class="form-container">
+    <div class="form-wrapper">
+        <h2>Sign Up</h2>
+        <br />
+        <%= form_for(:user, :url => { :controller => 'users', :action => 'create' } ) do |f| %>
+            <div class="field">
+                <%= f.label :first_name %><br />
+                <%= f.text_field :first_name %>
+            </div>
+            <br />
+
+            <div class="field">
+                <%= f.label :last_name %><br />
+                <%= f.text_field :last_name %>
+            </div>
+            <br />
+            <div class="field">
+                <%= f.label :email %><br />
+                <%= f.text_field :email %>
+            </div>
+            <br />
+            <div class="field">
+                <%= f.label :password %><br />
+                <%= f.password_field :password %>
+            </div>
+            <br />
+            <div class="field">
+                <%= f.label :confirm_password %><br />
+                <%= f.password_field :confirm_password %>
+            </div>
+            <br />
+            <div class="button-wrapper">
+                <%= f.submit "Sign Up" %>
+            </div>
+        <% end %>
+        <% if @user.errors.any? %>
+            <ul class="Signup_Errors">
+            <% for message_error in @user.errors.full_messages %>
+                <li>* <%= message_error %></li>
+            <% end %>
+            </ul>
+        <% end %>
+    </div>

@@ -9,6 +9,21 @@
   </head>
 
   <body>
+
+    <div class="header">
+      <h1><%= link_to "Socialize", root_path %></h1>
+      <% if @current_user %>
+        <%= link_to "Log Out", log_out_path %>
+      <% end %>
+    </div>
+
+    <% if notice.present? %>
+      <p class="notice close"><%= notice %></p>
+    <% end %>
+    <% if alert.present? %>
+      <p class="alert close"><%= alert %></p>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>

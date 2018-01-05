@@ -1,0 +1,92 @@
+.header {
+    height: 50px;
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    background-color: #FA8072;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    margin: 0px;
+}
+
+.header h1 {
+    font-family: 'Pacifico', cursive;
+    margin-left: 5px;
+}
+
+.header a {
+    color: white;
+    text-decoration: none;
+    margin-right: 5px;
+}
+.form-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    height: calc(100vh - 50px);
+    width: 100vw;
+}
+
+.form-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.button-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.notice {
+    z-index: 9999;
+    position: absolute;
+    top: 50px;
+    width: 100vw;
+    height: 50px;
+    text-align: center;
+    background-color: #aec6cf;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
+}
+
+.alert {
+    z-index: 9999;
+    position: absolute;
+    top: 50px;
+    width: 100vw;
+    height: 50px;
+    text-align: center;
+    margin: 0px;
+}
+
+input {
+    border-radius: 3px;
+}
+
+input[type=submit] {
+    border: 0px;
+    padding: 7px;
+    background-color: #CD695E;
+    color: white;
+}
+
+input[type=submit]:hover {
+    cursor: pointer;
+    color: #CD695E;
+    background-color: white;
+}
