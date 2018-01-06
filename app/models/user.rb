@@ -5,7 +5,8 @@ class User < ApplicationRecord
     validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
     validates :email, uniqueness: true
     before_save :encrypt_password
-    before_create generate_token(:auth_token), :create_activation_digest
+    before_create { generate_token(:auth_token) }
+    before_create :create_activation_digest
     after_save :clear_password
 
     def encrypt_password
