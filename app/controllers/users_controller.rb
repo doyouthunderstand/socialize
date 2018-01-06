@@ -13,7 +13,8 @@ class UsersController < ApplicationController
       else
         cookies[:auth_token] = @user.auth_token
       end
-      flash[:notice] = "You signed up succesfully"
+      UserMailer.account_activation(@user).deliver_now
+      flash[:notice] = "You signed up succesfully, please check your email to activate your account."
       flash[:color] = "valid"
       redirect_to root_path
     else
