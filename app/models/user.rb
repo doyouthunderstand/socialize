@@ -6,6 +6,7 @@ class User < ApplicationRecord
     validates :email, uniqueness: true
     before_save :encrypt_password
     before_create { generate_token(:auth_token) }
+    before_create :confirmation_token
     after_save :clear_password
 
     def encrypt_password
@@ -36,5 +37,20 @@ class User < ApplicationRecord
         begin
             self[column] = SecureRandom.urlsafe_base64
         end while User.exists?(column => self[column])
+    end
+
+    def email_activate
+        self.email_confirmed = true
+        self.confirm_token = nil
+        save!(:validate => false)
+    end
+
+    private # Can likely add other methods to private later
+
+    # Can likely refactor later to work with generate token method
+    def confirmation_token
+        if self.confirm_token.blank?
+            self.confirm_token = SecureRandom.urlsafe_base64.to_s
+        end
     end
 end

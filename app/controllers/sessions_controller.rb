@@ -6,13 +6,18 @@ class SessionsController < ApplicationController
     def login_attempt
        authorized_user = User.authenticate(params[:email], params[:login_password])
       if authorized_user
-        if params[:remember_me]
-          cookies.permanent[:auth_token] = authorized_user.auth_token
+        if authorized_user.email_confirmed
+          if params[:remember_me]
+            cookies.permanent[:auth_token] = authorized_user.auth_token
+          else
+            cookies[:auth_token] = authorized_user.auth_token
+          end
+          flash[:notice] = "Successfully logged in."
+          redirect_to root_path
         else
-          cookies[:auth_token] = authorized_user.auth_token
+          flash.now[:error] = 'Please activate your account by following the instructions in the account confirmation email you received to proceed'
+          redirect_to sessions_login_path
         end
-        flash[:notice] = "Successfully logged in."
-        redirect_to root_path
       else
         flash[:notice] = "Invalid Username or Password"
         flash[:color]= "invalid"

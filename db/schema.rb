@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180105024651) do
+ActiveRecord::Schema.define(version: 20180123003317) do
+
+  create_table "posts", force: :cascade do |t|
+    t.string "question"
+    t.string "answer"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email"
@@ -21,6 +28,10 @@ ActiveRecord::Schema.define(version: 20180105024651) do
     t.string "auth_token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "activation_digest"
+    t.boolean "activated"
+    t.boolean "email_confirmed", default: false
+    t.string "confirm_token"
   end
 
 end
